@@ -12,14 +12,26 @@ import { HttpService } from '../../http.service';
     styleUrl: './publishers-container.component.css',
 })
 export class PublishersContainerComponent implements OnInit {
-    constructor(private httpService: HttpService) {}
-
     publishers: Array<Publisher> = [];
 
+    constructor(private httpService: HttpService) {}
+
     ngOnInit(): void {
+        this.loadPublishers();
+    }
+
+    loadPublishers() {
+        this.httpService.getPublishers().subscribe(
+            (data) => {
+                this.publishers = data;
+            },
+            (error) => {
+                console.error('Error fetching publishers:', error);
+            }
+        );
     }
 
     addPublisher() {
-
+        // I will be implementing this in a later task
     }
 }

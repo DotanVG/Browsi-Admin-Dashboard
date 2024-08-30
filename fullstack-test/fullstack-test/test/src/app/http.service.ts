@@ -1,16 +1,17 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Publisher} from "./types";
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Publisher } from "./types";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root',
 })
 export class HttpService {
-    constructor(private http: HttpClient) {
-    }
+    private apiUrl = 'http://localhost:4300/api';
 
-    getPublishers() {
-        
+    constructor(private http: HttpClient) {}
+
+    getPublishers(): Observable<Publisher[]> {
+        return this.http.get<Publisher[]>(`${this.apiUrl}/publishers`);
     }
 }
