@@ -6,9 +6,29 @@ import domainsRouter from "./routers/domains.js";
 
 const PORT = 4300;
 const app = express();
-const data = fs.readFileSync("./db.json", "utf8");
+const dbFile = "./db.json";
 
-export const publishers = JSON.parse(data);
+export let publishers = [];
+
+function loadPublishers() {
+  try {
+    const data = fs.readFileSync(dbFile, "utf8");
+    publishers = JSON.parse(data);
+  } catch (error) {
+    console.error("Error reading database file:", error);
+    publishers = [];
+  }
+}
+
+export function savePublishers() {
+  try {
+    fs.writeFileSync(dbFile, JSON.stringify(publishers, null, 2), "utf8");
+  } catch (error) {
+    console.error("Error writing to database file:", error);
+  }
+}
+
+loadPublishers();
 
 app.use(cors());
 app.use(express.json());
