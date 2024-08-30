@@ -14,4 +14,9 @@ export class HttpService {
     getPublishers(): Observable<Publisher[]> {
         return this.http.get<Publisher[]>(`${this.apiUrl}/publishers`);
     }
+
+    addPublisher(publisherName: string): Observable<Publisher> {
+        console.log('HttpService: Adding publisher:', publisherName);
+        return this.http.post<Publisher>(`${this.apiUrl}/publishers`, { publisher: publisherName });
+    }
 }

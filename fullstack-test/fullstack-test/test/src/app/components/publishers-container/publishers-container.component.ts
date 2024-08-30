@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { PublisherCardComponent } from './publisher-card/publisher-card.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Publisher } from '../../types';
 import { HttpService } from '../../http.service';
 
 @Component({
     selector: 'app-publishers-container',
     standalone: true,
-    imports: [PublisherCardComponent, CommonModule],
+    imports: [PublisherCardComponent, CommonModule, FormsModule],
     templateUrl: './publishers-container.component.html',
     styleUrl: './publishers-container.component.css',
 })
 export class PublishersContainerComponent implements OnInit {
-    publishers: Array<Publisher> = [];
-
     constructor(private httpService: HttpService) {}
 
+    publishers: Array<Publisher> = [];
+    newPublisherName: string = '';
+
     ngOnInit(): void {
-        this.loadPublishers();
+        this.getPublishers();
     }
 
-    loadPublishers() {
+    getPublishers() {
         this.httpService.getPublishers().subscribe(
-            (data) => {
+            (data: Publisher[]) => {
                 this.publishers = data;
             },
             (error) => {
@@ -32,6 +34,17 @@ export class PublishersContainerComponent implements OnInit {
     }
 
     addPublisher() {
-        // I will be implementing this in a later task
+        if (this.newPublisherName.trim()) {
+            this.httpService.addPublisher(this.newPublisherName).subscribe(
+                (newPublisher: Publisher) => {
+                    this.publishers.unshift(newPublisher);
+                    this.newPublisherName = '';
+                },
+                (error) => {
+                    console.error('Error adding publisher:', error);
+                    alert(error.error.errorMessage || 'Failed to add publisher');
+                }
+            );
+        }
     }
 }

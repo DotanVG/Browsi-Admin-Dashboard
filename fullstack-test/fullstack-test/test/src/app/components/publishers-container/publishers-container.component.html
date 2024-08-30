@@ -1,6 +1,7 @@
 <div class="publishers-container">
     <div>
-      <button (click)="addPublisher()">Add publisher</button>
+        <input [(ngModel)]="newPublisherName" placeholder="Enter publisher name">
+        <button (click)="addPublisher()">Add publisher</button>
     </div>
     <div>
         <app-publisher-card *ngFor="let publisher of publishers" [publisher]="publisher"></app-publisher-card>
