@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-render-app-name.onrender.com/api'
+  apiUrl: 'https://browsi-admin-dashboard.onrender.com'
 };

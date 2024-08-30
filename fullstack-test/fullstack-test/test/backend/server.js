@@ -11,7 +11,7 @@ const dbFile = "./db.json";
 const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? "https://your-netlify-app-name.netlify.app"
+      ? "https://browsi-admin-dashboard-dotanv.netlify.app/"
       : "http://localhost:4200",
   optionsSuccessStatus: 200,
 };
