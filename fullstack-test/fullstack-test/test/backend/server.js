@@ -4,9 +4,19 @@ import fs from "fs";
 import publishersRouter from "./routers/publishers.js";
 import domainsRouter from "./routers/domains.js";
 
-const PORT = 4300;
+const PORT = process.env.port || 4300;
 const app = express();
 const dbFile = "./db.json";
+
+const corsOptions = {
+  origin:
+    process.env.NODE_ENV === "production"
+      ? "https://your-netlify-app-name.netlify.app"
+      : "http://localhost:4200",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 export let publishers = [];
 
