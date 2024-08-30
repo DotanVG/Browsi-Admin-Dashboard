@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Publisher } from "./types";
+import { Publisher, Domain } from "./types";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -18,5 +18,10 @@ export class HttpService {
     addPublisher(publisherName: string): Observable<Publisher> {
         console.log('HttpService: Adding publisher:', publisherName);
         return this.http.post<Publisher>(`${this.apiUrl}/publishers`, { publisher: publisherName });
+    }
+
+    getDomains(publisherName: string): Observable<Domain[]> {
+        console.log('HttpService: Getting domains for publisher:', publisherName);
+        return this.http.get<Domain[]>(`${this.apiUrl}/domains/${publisherName}`);
     }
 }
