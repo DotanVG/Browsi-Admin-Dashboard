@@ -2,7 +2,7 @@
 
 A full-stack application for managing publishers and domains, developed as part of the Browsi recruitment process.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/sites/browsi-admin-dashboard-dotanv/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f8aa5d4d-b159-42b1-b498-870995f2831f/deploy-status)](https://app.netlify.com/sites/browsi-admin-dashboard-dotanv/deploys)
 
 [📺 Watch Demo on YouTube](https://youtu.be/Hc5YSwQcGCg)
 
